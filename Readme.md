@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
-* Студент: [eteries](https://up.htmlacademy.ru/react/1/user/34198).
-* Наставник: `Неизвестно`.
+* Студент: [Сергей Яньшин](https://htmlacademy.ru/profile/id34198).
+* Наставник: [Игорь Алексеенко](https://htmlacademy.ru/profile/id100868).
 
 ---
 
