@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Сергей Яньшин](https://htmlacademy.ru/profile/id34198).
-* Наставник: [Игорь Алексеенко](https://htmlacademy.ru/profile/id100868).
+* Наставник: [Евгений Штурман](https://htmlacademy.ru/profile/id73551).
 
 ---
 
