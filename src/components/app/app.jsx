@@ -111,8 +111,10 @@ export const App = (props) => {
   );
 };
 
-App.propTypes = PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired
-    })).isRequired;
+App.propTypes = {
+  cards: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired
+      })).isRequired
+};
