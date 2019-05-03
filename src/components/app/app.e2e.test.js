@@ -9,13 +9,15 @@ const mockCards = [
   {id: 0, title: `mockTitle`}
 ];
 
-it(`One can click on card link`, () => {
-  const mockClickHandler = jest.fn();
-  const app = shallow(<App cards={mockCards} onCardClick={mockClickHandler} />);
-  const cardHeaderLink = app.find(`.place-card__image-wrapper a`);
+describe(`Card link works as expected`, () => {
+  it(`Click on card link executes onCardClick callback`, () => {
+    const mockClickHandler = jest.fn();
+    const app = shallow(<App cards={mockCards} onCardClick={mockClickHandler} />);
+    const cardHeaderLink = app.find(`.place-card__image-wrapper a`);
 
-  cardHeaderLink.simulate(`click`, {preventDefault() {}});
-  expect(mockClickHandler).toHaveBeenCalledTimes(1);
+    cardHeaderLink.simulate(`click`, {preventDefault() {}});
+    expect(mockClickHandler).toHaveBeenCalledTimes(1);
+  });
 });
 
 

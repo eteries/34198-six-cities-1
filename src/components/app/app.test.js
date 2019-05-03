@@ -6,9 +6,11 @@ const mockCards = [
   {id: 0, title: `mockTitle`}
 ];
 
-it(`App renders correctly`, () => {
-  const layout = renderer
-    .create(<App cards={mockCards} />)
-    .toJSON();
-  expect(layout).toMatchSnapshot();
+describe(`App renders correctly`, () => {
+  it(`Layout matches snapshot when created`, () => {
+    const layout = renderer
+      .create(<App cards={mockCards} />)
+      .toJSON();
+    expect(layout).toMatchSnapshot();
+  });
 });
