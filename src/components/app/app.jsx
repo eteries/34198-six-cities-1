@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export const App = (props) => {
-  const {titles} = props;
+  const {cards} = props;
 
   return (
     <main className="page__main page__main--index">
@@ -64,8 +64,8 @@ export const App = (props) => {
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {titles.map((title, index) => (
-                <article className="cities__place-card place-card" key={index}>
+              {cards.map((card) => (
+                <article className="cities__place-card place-card" key={card.id}>
                   <div className="place-card__mark">
                     <span>Premium</span>
                   </div>
@@ -94,7 +94,7 @@ export const App = (props) => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">{title}</a>
+                      <a href="#">{card.title}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -111,6 +111,8 @@ export const App = (props) => {
   );
 };
 
-App.propTypes = {
-  titles: PropTypes.arrayOf(PropTypes.string).isRequired
-};
+App.propTypes = PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired
+    })).isRequired;
