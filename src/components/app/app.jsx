@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export const App = (props) => {
-  const {cards} = props;
+  const {cards, onCardClick} = props;
 
   return (
     <main className="page__main page__main--index">
@@ -70,7 +70,7 @@ export const App = (props) => {
                     <span>Premium</span>
                   </div>
                   <div className="cities__image-wrapper place-card__image-wrapper">
-                    <a href="#">
+                    <a href="#" onClick={onCardClick}>
                       <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
                     </a>
                   </div>
@@ -111,8 +111,11 @@ export const App = (props) => {
   );
 };
 
-App.propTypes = PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired
-    })).isRequired;
+App.propTypes = {
+  cards: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired
+      })).isRequired,
+  onCardClick: PropTypes.func
+};
