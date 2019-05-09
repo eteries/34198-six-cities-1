@@ -55,7 +55,7 @@ export const OfferCard = (props) => {
 OfferCard.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    url: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
     isPremium: PropTypes.bool,
     price: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,

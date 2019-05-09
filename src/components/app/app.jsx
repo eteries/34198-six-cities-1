@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {OfferCard} from '../offer-card/offer-card.jsx';
+import {OffersList} from '../offers-list/offers-list.jsx';
 
 export const App = (props) => {
   const {offers, onCardClick} = props;
@@ -64,12 +64,8 @@ export const App = (props) => {
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
             </form>
-            <div className="cities__places-list places__list tabs__content">
-              {offers.map((card) => (
-                <div className="cities__place-card" key={card.id}>
-                  <OfferCard offer={card} onCardClick={onCardClick} />
-                </div>
-              ))}
+            <div className="tabs__content">
+              <OffersList offers={offers} onCardClick={onCardClick}/>
             </div>
           </section>
           <div className="cities__right-section">
@@ -85,7 +81,7 @@ App.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
-        url: PropTypes.string.isRequired,
+        src: PropTypes.string.isRequired,
         isPremium: PropTypes.bool,
         price: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
