@@ -178,13 +178,7 @@ exports[`App renders correctly Layout matches snapshot when created 1`] = `
               <article
                 className="place-card"
               >
-                <div
-                  className="place-card__mark"
-                >
-                  <span>
-                    Premium
-                  </span>
-                </div>
+                
                 <div
                   className="cities__image-wrapper place-card__image-wrapper"
                 >
