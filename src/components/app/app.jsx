@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import {OffersList} from '../offers-list/offers-list.jsx';
 
 export const App = (props) => {
