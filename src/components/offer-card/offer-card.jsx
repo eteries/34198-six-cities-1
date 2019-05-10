@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export const OfferCard = (props) => {
-  const {offer, onCardClick} = props;
-  const {src, price, name, rating, type, isPremium} = offer;
+  const {offer: {id, src, price, name, rating, type, isPremium}, onCardClick} = props;
 
   const getPremiumMark = (premium) => {
     if (premium) {
@@ -20,7 +19,7 @@ export const OfferCard = (props) => {
     <article className="place-card">
       {getPremiumMark(isPremium)}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#" onClick={onCardClick}>
+        <a href="#" onClick={() => onCardClick(id)}>
           <img className="place-card__image" src={src} width="260" height="200" alt="Place image" />
         </a>
       </div>
