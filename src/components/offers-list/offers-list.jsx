@@ -9,8 +9,6 @@ export class OffersList extends PureComponent {
     this.state = {
       activeCardId: null,
     };
-
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
   }
 
   handleMouseEnter(event, id) {
@@ -18,22 +16,30 @@ export class OffersList extends PureComponent {
   }
 
   setActiveCard(cardId) {
-    if (this.state.activeCardId !== cardId) {
-      this.setState(() => ({activeCardId: cardId}));
+    const {activeCardId} = this.state;
+
+    if (activeCardId !== cardId) {
+      this.setState({activeCardId: cardId});
     }
   }
 
   render() {
+    const {activeCardId} = this.state;
+    const {offers, onCardClick} = this.props;
+
     return (
       <div className="cities__places-list places__list">
-        {this.props.offers.map((card) => (
-          <div
-            className={`cities__place-card ${this.state.activeCardId === card.id ? `active` : ``}`}
-            key={card.id}
-            onMouseEnter={(e) => this.handleMouseEnter(e, card.id)}>
-            <OfferCard offer={card} onCardClick={this.props.onCardClick} />
-          </div>
-        ))}
+        {offers.map((card) => {
+          const {id} = card;
+          return (
+            <div
+              className={`cities__place-card ${activeCardId === id ? `active` : ``}`}
+              key={id}
+              onMouseEnter={(e) => this.handleMouseEnter(e, id)}>
+              <OfferCard offer={card} onCardClick={onCardClick} />
+            </div>
+          );
+        })}
       </div>
     );
   }

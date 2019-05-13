@@ -21,6 +21,8 @@ export const OfferCard = (props) => {
     }
   };
 
+  const getRatingWidth = (ratingValue) => ratingValue || 0;
+
   return (
     <article className="place-card">
       {getPremiumMark(isPremium)}
@@ -44,7 +46,7 @@ export const OfferCard = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: rating || 0}}></span>
+            <span style={{width: getRatingWidth(rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
