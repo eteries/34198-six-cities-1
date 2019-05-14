@@ -30,3 +30,4 @@ describe(`Offer list's state changes correctly`, () => {
     expect(getFirstItem().hasClass(`active`)).toBe(true);
   });
 });
+
