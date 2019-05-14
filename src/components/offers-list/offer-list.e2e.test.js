@@ -9,10 +9,11 @@ Enzyme.configure({adapter: new Adapter()});
 const mockList = [{
   id: 0, src: ``, name: ``, price: 0, type: ``
 }];
+const mockHandler = () => {};
 
 describe(`Offer list's state changes correctly`, () => {
   it(`When mouse enters item, state.activeCardId gets item's Id`, () => {
-    const list = mount(<OffersList offers={mockList} />);
+    const list = mount(<OffersList offers={mockList} onCardClick={mockHandler}/>);
     const item = list.find(`.cities__place-card`).first();
 
     expect(list.state(`activeCardId`)).toBe(null);
@@ -21,7 +22,7 @@ describe(`Offer list's state changes correctly`, () => {
   });
 
   it(`When mouse enters item, item gets .active class`, () => {
-    const list = mount(<OffersList offers={mockList} />);
+    const list = mount(<OffersList offers={mockList} onCardClick={mockHandler}/>);
     const getFirstItem = () => list.find(`.cities__place-card`).first();
 
     expect(getFirstItem().hasClass(`active`)).toBe(false);

@@ -15,11 +15,7 @@ export const OfferCard = (props) => {
     ) : ``;
   };
 
-  const handleHeaderClick = (cardId) => {
-    if (typeof onCardClick === `function`) {
-      onCardClick(cardId);
-    }
-  };
+  const handleHeaderClick = (cardId) => onCardClick(cardId);
 
   const getRatingWidth = (ratingValue) => ratingValue || 0;
 
@@ -69,5 +65,5 @@ OfferCard.propTypes = {
     type: PropTypes.string.isRequired,
     rating: PropTypes.number
   }).isRequired,
-  onCardClick: PropTypes.func
+  onCardClick: PropTypes.func.isRequired
 };

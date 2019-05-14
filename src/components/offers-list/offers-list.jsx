@@ -56,5 +56,5 @@ OffersList.propTypes = {
         type: PropTypes.string.isRequired,
         rating: PropTypes.number,
       })).isRequired,
-  onCardClick: PropTypes.func,
+  onCardClick: PropTypes.func.isRequired,
 };
