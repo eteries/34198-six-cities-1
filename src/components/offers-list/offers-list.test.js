@@ -1,17 +1,19 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {App} from './app.jsx';
 
-const mockCards = [
+import {OffersList} from './offers-list';
+
+const mockList = [
   {id: 0, name: `mockTitle`, src: ``, price: 0, type: ``}
 ];
 const mockHandler = () => {};
 
-describe(`App renders correctly`, () => {
+describe(`Offers List renders correctly`, () => {
   it(`Layout matches snapshot when created`, () => {
     const layout = renderer
-      .create(<App offers={mockCards} onCardClick={mockHandler} />)
+      .create(<OffersList offers={mockList} onCardClick={mockHandler} />)
       .toJSON();
+
     expect(layout).toMatchSnapshot();
   });
 });

@@ -1,15 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {App} from './components/app/app.jsx';
 
-const offers = [
-  {id: 1, title: `Beautiful & luxurious apartment at great location`},
-  {id: 2, title: `Wood and stone place`},
-  {id: 3, title: `Canal View Prinsengracht`},
-  {id: 4, title: `Nice, cozy, warm big bed apartment`}
-];
+import {App} from './components/app/app.jsx';
+import {offers} from './mocks/offers';
 
 ReactDOM.render(
-    <App cards={offers} />,
+    // eslint-disable-next-line no-console
+    <App offers={offers} onCardClick={(a) => console.log(a)}/>,
     document.getElementById(`root`)
 );
