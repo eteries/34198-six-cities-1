@@ -7,12 +7,15 @@ export class Map extends PureComponent {
   constructor(props) {
     super(props);
     this.map = null;
+    this.city = [52.38333, 4.9];
+    this.markers = [
+      [52.3709553943508, 4.89309666406198]
+    ];
   }
 
   init() {
-    const city = [52.38333, 4.9];
-    this.map = leaflet.map(`map`, Object.assign({center: city}, Config.OPTIONS));
-    this.map.setView(city, Config.OPTIONS.zoom);
+    this.map = leaflet.map(`map`, Object.assign({center: this.city}, Config.OPTIONS));
+    this.map.setView(this.city, Config.OPTIONS.zoom);
 
     leaflet
       .tileLayer(Config.SOURCE_URL, Config.SOURCE_OPTIONS)
@@ -20,11 +23,11 @@ export class Map extends PureComponent {
   }
 
   addMarkers() {
-    const offerCords = [52.3709553943508, 4.89309666406198];
-
-    leaflet
-      .marker(offerCords, {icon: leaflet.icon(Config.ICON)})
-      .addTo(this.map);
+    this.markers.forEach((offerCords) => {
+      leaflet
+        .marker(offerCords, {icon: leaflet.icon(Config.ICON)})
+        .addTo(this.map);
+    });
   }
 
   componentDidMount() {

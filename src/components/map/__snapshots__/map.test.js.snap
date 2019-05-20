@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Map works Maps renders 1`] = `
+exports[`Map component renders correctly Layout matches snapshot when created 1`] = `
 <section
   className="cities__map map"
   id="map"

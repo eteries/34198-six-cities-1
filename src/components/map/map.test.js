@@ -3,16 +3,8 @@ import renderer from 'react-test-renderer';
 
 import {Map} from './map.jsx';
 
-/**
- * @jest-environment jsdom
- */
-
-describe(`Map works`, () => {
-  it(`Maps renders`, () => {
-    const div = document.createElement(`div`);
-    div.setAttribute(`id`, `map`);
-    document.body.appendChild(div);
-
+describe(`Map component renders correctly`, () => {
+  it(`Layout matches snapshot when created`, () => {
     const layout = renderer
       .create(<Map />)
       .toJSON();
