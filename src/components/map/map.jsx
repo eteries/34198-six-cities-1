@@ -4,9 +4,13 @@ import leaflet from 'leaflet';
 import {MapDefaultConfig as Config} from './map-default-config';
 
 export class Map extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.map = null;
+  }
+
   init() {
     const city = [52.38333, 4.9];
-
     this.map = leaflet.map(`map`, Object.assign({center: city}, Config.OPTIONS));
     this.map.setView(city, Config.OPTIONS.zoom);
 
