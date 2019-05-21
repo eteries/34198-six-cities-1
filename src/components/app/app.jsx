@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import {Map} from '../map/map.jsx';
 import {OffersList} from '../offers-list/offers-list.jsx';
 
 export const App = (props) => {
@@ -70,7 +71,7 @@ export const App = (props) => {
             </div>
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <Map />
           </div>
         </div>
       </div>
