@@ -2,13 +2,21 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
 import {OfferCard} from '../offer-card/offer-card.jsx';
+import {ActionCreator} from '../../reducer';
+import {connect} from 'react-redux';
 
-export class OffersList extends PureComponent {
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  offers: state.offers,
+  selectedOfferId: state.selectedOfferId
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onCardSelect: (id) => dispatch(ActionCreator.selectOffer(id))
+});
+
+class OffersList extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      activeCardId: null,
-    };
   }
 
   handleMouseEnter(event, id) {
@@ -16,16 +24,15 @@ export class OffersList extends PureComponent {
   }
 
   setActiveCard(cardId) {
-    const {activeCardId} = this.state;
+    const {selectedOfferId} = this.props;
 
-    if (activeCardId !== cardId) {
-      this.setState({activeCardId: cardId});
+    if (selectedOfferId !== cardId) {
+      this.props.onCardSelect();
     }
   }
 
   render() {
-    const {activeCardId} = this.state;
-    const {offers, onCardClick} = this.props;
+    const {offers, onCardClick, selectedOfferId} = this.props;
 
     return (
       <div className="cities__places-list places__list">
@@ -33,7 +40,7 @@ export class OffersList extends PureComponent {
           const {id} = card;
           return (
             <div
-              className={`cities__place-card ${activeCardId === id ? `active` : ``}`}
+              className={`cities__place-card ${selectedOfferId === id ? `active` : ``}`}
               key={id}
               onMouseEnter={(e) => this.handleMouseEnter(e, id)}>
               <OfferCard offer={card} onCardClick={onCardClick} />
@@ -56,5 +63,9 @@ OffersList.propTypes = {
         type: PropTypes.string.isRequired,
         rating: PropTypes.number,
       })).isRequired,
+  selectedOfferId: PropTypes.number,
   onCardClick: PropTypes.func.isRequired,
+  onCardSelect: PropTypes.func.isRequired
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(OffersList);
