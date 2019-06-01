@@ -10,8 +10,12 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offers: state.offers,
 });
 
-const App = (props) => {
-  const {onCardClick} = props;
+export const App = (props) => {
+  const {offers, onCardClick} = props;
+
+  const composeInfoString = () => offers.length ?
+    `${offers.length} places to stay in ${offers[0].city}` :
+    `No offers found`;
 
   return (
     <main className="page__main page__main--index">
@@ -21,7 +25,7 @@ const App = (props) => {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">312 places to stay in Amsterdam</b>
+            <b className="places__found">{composeInfoString()}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">
@@ -59,7 +63,8 @@ App.propTypes = {
         price: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
-        rating: PropTypes.number
+        rating: PropTypes.number,
+        city: PropTypes.string
       })).isRequired,
   onCardClick: PropTypes.func.isRequired
 };

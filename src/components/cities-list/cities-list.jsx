@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-class CitiesList extends React.Component {
+export class CitiesList extends React.Component {
   constructor(props) {
     super(props);
   }

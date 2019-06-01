@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offers: state.offers
 });
 
-class Map extends PureComponent {
+export class Map extends PureComponent {
   constructor(props) {
     super(props);
     this.map = null;

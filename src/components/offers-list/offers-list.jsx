@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
   onCardSelect: (id) => dispatch(ActionCreator.selectOffer(id))
 });
 
-class OffersList extends PureComponent {
+export class OffersList extends PureComponent {
   constructor(props) {
     super(props);
   }

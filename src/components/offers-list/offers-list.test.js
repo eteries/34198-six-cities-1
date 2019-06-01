@@ -11,7 +11,7 @@ const mockHandler = () => {};
 describe(`Offers List renders correctly`, () => {
   it(`Layout matches snapshot when created`, () => {
     const layout = renderer
-      .create(<OffersList offers={mockList} onCardClick={mockHandler} />)
+      .create(<OffersList offers={mockList} onCardClick={mockHandler} onCardSelect={mockHandler}/>)
       .toJSON();
 
     expect(layout).toMatchSnapshot();
