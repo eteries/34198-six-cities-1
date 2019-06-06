@@ -1,56 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from 'react-redux';
 
-import {Map} from '../map/map.jsx';
-import {OffersList} from '../offers-list/offers-list.jsx';
+import Map from '../map/map.jsx';
+import OffersList from '../offers-list/offers-list.jsx';
+import CitiesList from '../cities-list/cities-list.jsx';
 
 export const App = (props) => {
   const {offers, onCardClick} = props;
 
+  const composeInfoString = () => offers.length ?
+    `${offers.length} places to stay in ${offers[0].city}` :
+    `No offers found`;
+
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
-      <div className="cities tabs">
-        <section className="locations container">
-          <ul className="locations__list tabs__list">
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Paris</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Cologne</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Brussels</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item tabs__item--active">
-                <span>Amsterdam</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Hamburg</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Dusseldorf</span>
-              </a>
-            </li>
-          </ul>
-        </section>
-      </div>
+      <CitiesList />
       <div className="cities__places-wrapper">
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">312 places to stay in Amsterdam</b>
+            <b className="places__found">{composeInfoString()}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">
@@ -67,7 +38,7 @@ export const App = (props) => {
               </ul>
             </form>
             <div className="tabs__content">
-              <OffersList offers={offers} onCardClick={onCardClick}/>
+              <OffersList onCardClick={onCardClick}/>
             </div>
           </section>
           <div className="cities__right-section">
@@ -88,7 +59,12 @@ App.propTypes = {
         price: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
-        rating: PropTypes.number
+        rating: PropTypes.number,
+        city: PropTypes.string
       })).isRequired,
   onCardClick: PropTypes.func.isRequired
 };
+
+const mapStateToProps = (state) => ({offers: state.offers});
+
+export default connect(mapStateToProps)(App);

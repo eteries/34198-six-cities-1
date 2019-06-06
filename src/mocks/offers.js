@@ -7,7 +7,8 @@ export const offers = [
     name: `Beautiful & luxurious apartment at great location`,
     type: `apartment`,
     rating: 93,
-    coords: [52.3909553943508, 4.85309666406198]
+    coords: [52.3909553943508, 4.85309666406198],
+    city: `Amsterdam`
   },
   {
     id: 2,
@@ -17,7 +18,8 @@ export const offers = [
     name: `Wood and stone place`,
     type: `private room`,
     rating: 72,
-    coords: [52.369553943508, 4.85309666406198]
+    coords: [52.369553943508, 4.85309666406198],
+    city: `Paris`
   },
   {
     id: 3,
@@ -27,7 +29,8 @@ export const offers = [
     name: `Canal View Prinsengracht`,
     type: `house`,
     rating: 85,
-    coords: [52.3909553943508, 4.929309666406198]
+    coords: [52.3909553943508, 4.929309666406198],
+    city: `Amsterdam`
   },
   {
     id: 4,
@@ -37,6 +40,7 @@ export const offers = [
     name: `Nice, cozy, warm big bed apartment`,
     type: `hotel`,
     rating: 80,
-    coords: [52.3809553943508, 4.939309666406198]
+    coords: [52.3809553943508, 4.939309666406198],
+    city: `Brussels`
   },
 ];

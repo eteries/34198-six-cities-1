@@ -1,16 +1,19 @@
 import React, {PureComponent} from 'react';
 import leaflet from 'leaflet';
+import {connect} from 'react-redux';
 
 import {MapDefaultConfig as Config} from './map-default-config';
+import PropTypes from 'prop-types';
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  offers: state.offers
+});
 
 export class Map extends PureComponent {
   constructor(props) {
     super(props);
     this.map = null;
     this.city = [52.38333, 4.9];
-    this.markers = [
-      [52.3709553943508, 4.89309666406198]
-    ];
   }
 
   init() {
@@ -30,6 +33,15 @@ export class Map extends PureComponent {
     });
   }
 
+  get markers() {
+    const {offers} = this.props;
+
+    return offers.reduce((acc, offer) => {
+      acc.push(offer.coords);
+      return acc;
+    }, []);
+  }
+
   componentDidMount() {
     this.init();
     this.addMarkers();
@@ -43,4 +55,20 @@ export class Map extends PureComponent {
     return <section className="cities__map map" id="map" />;
   }
 }
+
+Map.propTypes = {
+  offers: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        src: PropTypes.string.isRequired,
+        isPremium: PropTypes.bool,
+        price: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        rating: PropTypes.number,
+        coords: PropTypes.arrayOf(PropTypes.number)
+      })).isRequired,
+};
+
+export default connect(mapStateToProps)(Map);
 
