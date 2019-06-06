@@ -3,25 +3,13 @@ import PropTypes from "prop-types";
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer';
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  selectedCityId: state.selectedCityId,
-  cities: state.cities
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onCitySelect: (cityId, cityTitle) => {
-    dispatch(ActionCreator.changeCity(cityId));
-    dispatch(ActionCreator.getOffers(cityTitle));
-  }
-});
-
 export class CitiesList extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const {selectedCityId, cities} = this.props;
+    const {selectedCityId, cities, onCitySelect} = this.props;
 
     return (
       <div className="cities tabs">
@@ -33,7 +21,7 @@ export class CitiesList extends React.Component {
                   `locations__item-link tabs__item tabs__item--active` :
                   `locations__item-link tabs__item`}
                 href="#"
-                onClick={() => this.props.onCitySelect(city.id, city.title)}>
+                onClick={() => onCitySelect(city.id, city.title)}>
                   <span>{city.title}</span>
                 </a>
               </li>
@@ -53,5 +41,17 @@ CitiesList.propTypes = {
   selectedCityId: PropTypes.number.isRequired,
   onCitySelect: PropTypes.func.isRequired
 };
+
+const mapStateToProps = (state) => ({
+  selectedCityId: state.selectedCityId,
+  cities: state.cities
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onCitySelect: (cityId, cityTitle) => {
+    dispatch(ActionCreator.changeCity(cityId));
+    dispatch(ActionCreator.getOffers(cityTitle));
+  }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CitiesList);

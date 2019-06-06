@@ -6,10 +6,6 @@ import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  offers: state.offers,
-});
-
 export const App = (props) => {
   const {offers, onCardClick} = props;
 
@@ -68,5 +64,7 @@ App.propTypes = {
       })).isRequired,
   onCardClick: PropTypes.func.isRequired
 };
+
+const mapStateToProps = (state) => ({offers: state.offers});
 
 export default connect(mapStateToProps)(App);

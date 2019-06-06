@@ -34,7 +34,9 @@ export class Map extends PureComponent {
   }
 
   get markers() {
-    return this.props.offers.reduce((acc, offer) => {
+    const {offers} = this.props;
+
+    return offers.reduce((acc, offer) => {
       acc.push(offer.coords);
       return acc;
     }, []);

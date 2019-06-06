@@ -5,34 +5,24 @@ import {OfferCard} from '../offer-card/offer-card.jsx';
 import {ActionCreator} from '../../reducer';
 import {connect} from 'react-redux';
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  offers: state.offers,
-  selectedOfferId: state.selectedOfferId
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onCardSelect: (id) => dispatch(ActionCreator.selectOffer(id))
-});
-
 export class OffersList extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   handleMouseEnter(event, id) {
     this.setActiveCard(id);
   }
 
   setActiveCard(cardId) {
-    const {selectedOfferId} = this.props;
+    const {selectedOfferId, onCardSelect} = this.props;
 
     if (selectedOfferId !== cardId) {
-      this.props.onCardSelect();
+      onCardSelect(cardId);
     }
   }
 
   render() {
     const {offers, onCardClick, selectedOfferId} = this.props;
+
+    // eslint-disable-next-line no-console
+    console.log(selectedOfferId);
 
     return (
       <div className="cities__places-list places__list">
@@ -67,5 +57,12 @@ OffersList.propTypes = {
   onCardClick: PropTypes.func.isRequired,
   onCardSelect: PropTypes.func.isRequired
 };
+
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+  selectedOfferId: state.selectedOfferId
+});
+
+const mapDispatchToProps = {onCardSelect: (id) => ActionCreator.selectOffer(id)};
 
 export default connect(mapStateToProps, mapDispatchToProps)(OffersList);
