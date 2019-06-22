@@ -5,9 +5,13 @@ import {connect} from 'react-redux';
 import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
+import withSelectableItem from '../../hocs/with-selectable-item/with-selectable-item.jsx';
 
 export const App = (props) => {
   const {offers, onCardClick} = props;
+
+  const SelectableCitiesList = withSelectableItem(0)(CitiesList);
+  const SelectableOffersList = withSelectableItem()(OffersList);
 
   const composeInfoString = () => offers.length ?
     `${offers.length} places to stay in ${offers[0].city}` :
@@ -16,7 +20,7 @@ export const App = (props) => {
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
-      <CitiesList />
+      <SelectableCitiesList />
       <div className="cities__places-wrapper">
         <div className="cities__places-container container">
           <section className="cities__places places">
@@ -38,7 +42,7 @@ export const App = (props) => {
               </ul>
             </form>
             <div className="tabs__content">
-              <OffersList onCardClick={onCardClick}/>
+              <SelectableOffersList onCardClick={onCardClick}/>
             </div>
           </section>
           <div className="cities__right-section">

@@ -2,27 +2,22 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
 import {OfferCard} from '../offer-card/offer-card.jsx';
-import {ActionCreator} from '../../reducer';
 import {connect} from 'react-redux';
 
 export class OffersList extends PureComponent {
   handleMouseEnter(event, id) {
-    this.setActiveCard(id);
-  }
+    const {onItemSelect} = this.props;
 
-  setActiveCard(cardId) {
-    const {selectedOfferId, onCardSelect} = this.props;
-
-    if (selectedOfferId !== cardId) {
-      onCardSelect(cardId);
+    if (typeof onItemSelect === `function`) {
+      onItemSelect(id);
     }
   }
 
   render() {
-    const {offers, onCardClick, selectedOfferId} = this.props;
+    const {offers, onCardClick, selectedId} = this.props;
 
     // eslint-disable-next-line no-console
-    console.log(selectedOfferId);
+    console.log(selectedId);
 
     return (
       <div className="cities__places-list places__list">
@@ -30,7 +25,7 @@ export class OffersList extends PureComponent {
           const {id} = card;
           return (
             <div
-              className={`cities__place-card ${selectedOfferId === id ? `active` : ``}`}
+              className={`cities__place-card ${selectedId === id ? `active` : ``}`}
               key={id}
               onMouseEnter={(e) => this.handleMouseEnter(e, id)}>
               <OfferCard offer={card} onCardClick={onCardClick} />
@@ -53,16 +48,13 @@ OffersList.propTypes = {
         type: PropTypes.string.isRequired,
         rating: PropTypes.number,
       })).isRequired,
-  selectedOfferId: PropTypes.number,
+  selectedId: PropTypes.number,
   onCardClick: PropTypes.func.isRequired,
-  onCardSelect: PropTypes.func.isRequired
+  onItemSelect: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers,
-  selectedOfferId: state.selectedOfferId
+  offers: state.offers
 });
 
-const mapDispatchToProps = {onCardSelect: (id) => ActionCreator.selectOffer(id)};
-
-export default connect(mapStateToProps, mapDispatchToProps)(OffersList);
+export default connect(mapStateToProps)(OffersList);

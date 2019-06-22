@@ -11,7 +11,7 @@ const cities = [
 describe(`Cities renders correctly`, () => {
   it(`Layout matches snapshot when created`, () => {
     const layout = renderer
-      .create(<CitiesList cities={cities} onCitySelect={jest.fn} selectedCityId={0} />)
+      .create(<CitiesList cities={cities} onItemSelect={jest.fn} onCitySelect={jest.fn} selectedId={0} />)
       .toJSON();
 
     expect(layout).toMatchSnapshot();

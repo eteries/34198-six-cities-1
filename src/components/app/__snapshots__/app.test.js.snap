@@ -9,7 +9,10 @@ exports[`App renders correctly Layout matches snapshot when created 1`] = `
   >
     Cities
   </h1>
-  <Cities />
+  <Cities
+    onItemSelect={[Function]}
+    selectedId={0}
+  />
   <div
     className="cities__places-wrapper"
   >
@@ -88,6 +91,7 @@ exports[`App renders correctly Layout matches snapshot when created 1`] = `
         >
           <Offers
             onCardClick={[Function]}
+            onItemSelect={[Function]}
           />
         </div>
       </section>

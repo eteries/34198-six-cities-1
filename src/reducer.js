@@ -13,8 +13,6 @@ const extractCities = (offersList) => {
 };
 
 const initialState = {
-  selectedCityId: 0,
-  selectedOfferId: null,
   offers,
   cities: extractCities(offers)
 };
@@ -24,16 +22,6 @@ const getOffersByCity = (offersList, cityTitle) => {
 };
 
 const ActionCreator = {
-  changeCity: (city) => ({
-    type: `CHANGE_CITY`,
-    payload: city
-  }),
-
-  selectOffer: (offerId) => ({
-    type: `SELECT_OFFER`,
-    payload: offerId
-  }),
-
   getOffers: (city) => ({
     type: `GET_OFFERS`,
     payload: getOffersByCity(initialState.offers, city)

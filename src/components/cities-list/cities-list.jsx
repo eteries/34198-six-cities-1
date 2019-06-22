@@ -4,12 +4,18 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer';
 
 export class CitiesList extends React.Component {
-  constructor(props) {
-    super(props);
+  _handleClick(id, title) {
+    const {onItemSelect, onCitySelect} = this.props;
+
+    onCitySelect(title);
+
+    if (typeof onItemSelect === `function`) {
+      onItemSelect(id);
+    }
   }
 
   render() {
-    const {selectedCityId, cities, onCitySelect} = this.props;
+    const {selectedId, cities} = this.props;
 
     return (
       <div className="cities tabs">
@@ -17,11 +23,11 @@ export class CitiesList extends React.Component {
           <ul className="locations__list tabs__list">
             {cities.map((city) => (
               <li className="locations__item" key={city.id}>
-                <a className={selectedCityId === city.id ?
+                <a className={selectedId === city.id ?
                   `locations__item-link tabs__item tabs__item--active` :
                   `locations__item-link tabs__item`}
                 href="#"
-                onClick={() => onCitySelect(city.id, city.title)}>
+                onClick={() => this._handleClick(city.id, city.title)}>
                   <span>{city.title}</span>
                 </a>
               </li>
@@ -38,18 +44,17 @@ CitiesList.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired
   })).isRequired,
-  selectedCityId: PropTypes.number.isRequired,
-  onCitySelect: PropTypes.func.isRequired
+  selectedId: PropTypes.number,
+  onCitySelect: PropTypes.func.isRequired,
+  onItemSelect: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
-  selectedCityId: state.selectedCityId,
   cities: state.cities
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCitySelect: (cityId, cityTitle) => {
-    dispatch(ActionCreator.changeCity(cityId));
+  onCitySelect: (cityTitle) => {
     dispatch(ActionCreator.getOffers(cityTitle));
   }
 });
